@@ -3,18 +3,17 @@ from tensorflow.keras.layers import Lambda, Input, Dense, BatchNormalization, Re
 from tqdm import tqdm
 from stellargraph.layer.misc import GatherIndices
 
-from stellargraph_sign.stellargraph.mapper.SIGNNodeGenerator import SIGNNodeGenerator
+from stellargraphtest.mapper.SIGNNodeGenerator import SIGNNodeGenerator
 
 import tensorflow as tf
 from tensorflow.keras import Model
 
 class SIGN():
-    def __init__(self, hidden_layers, hidden_layer_channels, out_channels, generator, bias=True, dropout=0.0):
+    def __init__(self, hidden_layers, hidden_layer_channels, out_channels, generator, dropout=0.0):
         self.hidden_layers = hidden_layers
         self.hidden_layer_channels = hidden_layer_channels
         self.out_channels = out_channels
         self.generator = generator
-        self.bias = bias
         self.dropout = dropout
         
         if not isinstance(generator, SIGNNodeGenerator):

@@ -4,7 +4,7 @@ from tensorflow.keras import backend as K
 from stellargraph.core.graph import StellarGraph
 from stellargraph.core.utils import is_real_iterable
 from stellargraph.mapper import Generator
-from stellargraph_sign.stellargraph.mapper.SIGNSequence import SIGNSequence, SparseSIGNSequence
+from stellargraphtest.mapper.SIGNSequence import SIGNSequence, SparseSIGNSequence
 
 class SIGNNodeGenerator(Generator):
     multiplicity = 1
