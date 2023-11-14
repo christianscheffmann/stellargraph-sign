@@ -27,3 +27,28 @@ def HK_Aadj(A, t):
     A_norm = normalize_adj(A, symmetric=False)
     S = np.exp(-t)*expm(t*A_norm.tocsc()).tocsr()
     return normalize_adj(sparsify_threshold_epsilon(S, 1e-4))
+    
+    
+def normalize_adj(adj, symmetric=True, add_self_loops=False):
+    if add_self_loops:
+        adj = adj + sp.diags(np.ones(adj.shape[0]) - adj.diagonal())
+        
+    if symmetric:
+        d = sp.diags(np.power(np.array(adj.sum(1)), -0.5).flatten(), 0)
+        a_norm = adj.dot(d).transpose().dot(d).tocsr()
+    else:
+        d = sp.diags(np.float_power(np.array(adj.sum(1)), -1).flatten(), 0)
+        a_norm = d.dot(adj.tocsr()
+    
+
+def GCN_Aadj_feats_op():
+
+
+def PPNP_Aadj_feats_op(A, teleport_probability=0.1):
+    A = A + A.T.multiply(A.T > A) - A.multiply(A.T > A)
+    A = A + sp.diags(np.ones(A.shape[0]) - A.diagonal())
+    A = normalize_adj(A, symmetric=True)
+    A = sp.identity(A.shape[0]) - A.multiply(1 - teleport_probability)
+    
+
+
